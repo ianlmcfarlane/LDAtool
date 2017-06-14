@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title></title>
+  <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script src='demand_tod.js'></script>
+  <script src='demand_dow.js'></script>
+  <script src='geojson.js'></script>
+  <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
+	<script src='map.js'></script>
+	
+  <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+  
+  <style>
+    body { margin:0; padding:0; }
+    .map { position:absolute; top:0; bottom:0; width:70%; }
+	.info {
+	  position:absolute;
+	  top:10px;
+	  right:10px;
+	  }
+	  .info div {
+	    background:#fff;
+	    padding:10px;
+	    border-radius:3px;
+		margin-top: 300px;
+		float: right;
+	    }
+		.title{
+			float: right;
+		}
+		.controls{
+			margin: 100px;
+			float: right;
+		}
+		.input{
+			margin-top: 10px;
+		}
+		/* DivTable.com */
+		.divTable{
+			float: right;
+			display: table;
+			width: 30%;
+		}
+		.divTableRow {
+			display: table-row;
+		}
+		.divTableHeading {
+			background-color: #EEE;
+			display: table-header-group;
+		}
+		.divTableCell, .divTableHead {
+			display: table-cell;
+			padding: 3px 10px;
+		}
+		.divTableHeading {
+			background-color: #EEE;
+			display: table-header-group;
+			font-weight: bold;
+		}
+		.divTableFoot {
+			background-color: #EEE;
+			display: table-footer-group;
+			font-weight: bold;
+		}
+		.divTableBody {
+			display: table-row-group;
+		}
+  </style>
+</head>
+<body>
+<div>	
+	<div id='map_geo' class='map'> </div>
+	<div class="divTable">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableCell">
+					Day of Week: 
+				</div>	
+			<div class="divTableCell">
+				<select id='dow'>
+				  <option value="0">Monday</option>
+				  <option value="1">Tuesday</option>
+				  <option value="2">Wednesday</option>
+				  <option value="3">Thursday</option>
+				  <option value="4">Friday</option>
+				  <option value="5">Saturday</option>
+				  <option value="6">Sunday</option>
+				</select>
+			</div>
+			</div>
+		<div class="divTableRow">
+			<div class="divTableCell">
+				Time of Day: 
+			</div>
+			<div class="divTableCell">
+				<select id='tod'>
+				  <option value="any">Both</option>
+				  <option value="AM">AM</option>
+				  <option value="PM">PM</option>
+				</select>
+			</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">Rebalance Threshold: </div>
+			<div class="divTableCell">
+				<input id='thresh'/>
+			</div>
+		</div>
+		<div class="divTableRow">
+			<div id="title" class="divTableCell"></div>
+			<div class="divTableCell"></div>
+		</div>
+		<div class="divTableRow">
+			<div id="desc" class="divTableCell"></div>
+		</div>
+		<div class="divTableRow">
+			<div id="interval" class="divTableCell"></div>
+			<div class="divTableCell"></div>
+			
+		</div>
+		<div class="divTableRow">
+			<div id="docks" class="divTableCell"></div>
+			<div class="divTableCell"></div>
+		</div>
+		</div>
+	</div>
+<div/>
+
+
+<div id='info' class='info'></div>
+
+</body>
+</html>
