@@ -28,36 +28,42 @@ $(document).ready(function (){
 	}
 	get_features();
 	
-	// function system_supply(){
-	// 	var dem_opt = {'any': demand_dow, 'time': demand_tod}
-	// 	var dems = dem_opt[tod]
-	// 	var short = 0, surplus = 0;
-	// 	for (i=0; i < dems.length; i++){
-	// 		if (dems[i]['dow'] == dow && (dems[i]['tod'] == tod || !dems[i].hasOwnProperty("tod"))){
-	// 			// console.log(dems[i].net_rides_avg)
-	// 			dems[i].net_rides_avg < 0 ? short += dems[i].net_rides_avg : surplus += dems[i].net_rides_avg;
-	// 		}
-	// 	}
-	// 	// console.log(short, surplus)
-	// }
-	// system_supply();
-	//
 	
 	tooltiplayer.on('click',function(e) {
 	    e.layer.closePopup();
 	    var feature = e.layer.feature;
 		$('#title').html('<strong>'+feature.properties.title+'</strong>')
 		$('#docks').html('Number of Docks:'+feature.properties.dockcount)
-		$('#interval').html('['+feature.properties.CI[1]+' , '+feature.properties.CI[0]+']  (90% conf. interval)')
+		$('#interval').html('<strong>['+feature.properties.CI[1]+' , '+feature.properties.CI[0]+']  (90% conf. level)</strong>')
+		var reject = '<strong>Can reject H<sub>0</sub></strong><br /> (Mean net flow = 0, no rebalancing necessary) --> the null hypothesis lies outside the 90% confidence interval.'
+		var fail = '<strong>Cannot reject H<sub>0</sub></strong><br /> (Mean net flow = 0, no rebalancing necessary) --> the null hypothesis within the 90% confidence interval.'
+		
+		if (feature.properties.CI[1] < 0 && feature.properties.CI[0] > 0){
+			$('#reb').html('NO REBALANCING RECOMMENDED')
+			$('#recc').html(fail)
+		}
+		else{
+			if(feature.properties.CI[1] < 0 && feature.properties.CI[0] < 0){
+				$('#reb').html('<strong>Add between '+Math.ceil(Math.abs(feature.properties.CI[0]))+' and '+Math.ceil(Math.abs(feature.properties.CI[1]))+' bikes to the station.</strong>')
+			}
+			else{
+				$('#reb').html('<strong>Remove between '+Math.ceil(Math.abs(feature.properties.CI[1]))+' and '+Math.ceil(Math.abs(feature.properties.CI[0]))+' bikes from the station.</strong>')
+			}
+			$('#recc').html(reject)
+			
+		}
+		
+		
 	});
 	mapGeo.on('move', empty);
 	empty();
 
 	function empty() {
-		$('#title, #docks, #interval').html('')
+		$('#title, #docks, #interval, #recc, #reb').html('')
 	}
 	
 	$('#dow, #tod').change(function(){
+		empty();
 		dow = $('#dow').val()
 		tod = $('#tod').val()
 		get_features();

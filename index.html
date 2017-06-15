@@ -19,7 +19,7 @@
   
   <style>
     body { margin:0; padding:0; }
-    .map { position:absolute; top:0; bottom:0; width:70%; }
+    .map { position:absolute; top:0; bottom:0; width:67%; }
 	.info {
 	  position:absolute;
 	  top:10px;
@@ -47,6 +47,7 @@
 			float: right;
 			display: table;
 			width: 30%;
+			margin: 10px;
 		}
 		.divTableRow {
 			display: table-row;
@@ -72,6 +73,17 @@
 		.divTableBody {
 			display: table-row-group;
 		}
+		.legend{
+			float: right;
+			height: 100px;
+		}
+		.divTableCell img{
+			width: 25px;
+		}
+		img{
+			float: right;
+		}
+		
   </style>
 </head>
 <body>
@@ -101,21 +113,21 @@
 			</div>
 			<div class="divTableCell">
 				<select id='tod'>
-				  <option value="any">Both</option>
+				  <option value="any">Total</option>
 				  <option value="AM">AM</option>
 				  <option value="PM">PM</option>
 				</select>
 			</div>
 		</div>
 		<div class="divTableRow">
-			<div class="divTableCell">Rebalance Threshold: </div>
-			<div class="divTableCell">
-				<input id='thresh'/>
+
 			</div>
 		</div>
 		<div class="divTableRow">
 			<div id="title" class="divTableCell"></div>
-			<div class="divTableCell"></div>
+			<div class="divTableCell">
+				<br />
+			</div>
 		</div>
 		<div class="divTableRow">
 			<div id="desc" class="divTableCell"></div>
@@ -126,15 +138,47 @@
 			
 		</div>
 		<div class="divTableRow">
-			<div id="docks" class="divTableCell"></div>
+			<div id="recc" class="divTableCell"></div>
 			<div class="divTableCell"></div>
+		</div>
+		<div class="divTableRow">
+			<div id="reb" class="divTableCell"></div>
+			<div class="divTableCell"></div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell"><img src='http://a.tiles.mapbox.com/v4/marker/pin-m+7e7e7e@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+			<div class="divTableCell">No Data</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell"><img src='http://a.tiles.mapbox.com/v4/marker/pin-m-0+00FF00@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+			<div class="divTableCell">Positive net flow</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell"><img src='http://a.tiles.mapbox.com/v4/marker/pin-m-1+ff0000@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+			<div class="divTableCell">Negative net flow</div>
 		</div>
 		</div>
 	</div>
 <div/>
 
-
-<div id='info' class='info'></div>
+<!-- <div class='legend'>
+	<div class="divTable">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableCell"><image src='http://a.tiles.mapbox.com/v4/marker/pin-m+7e7e7e@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+				<div class="divTableCell">No Data</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell"><image src='http://a.tiles.mapbox.com/v4/marker/pin-m-0+00FF00@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+				<div class="divTableCell">Positive net flow</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell"><image src='http://a.tiles.mapbox.com/v4/marker/pin-m-1+ff0000@2x.png?access_token=pk.eyJ1IjoiaWFubG1jZmFyIiwiYSI6ImNqM3RyOHplNzAwYTEycHFtaDBpZTZyMWgifQ.OprQgUsMmlu8TopzcjaJfg'></div>
+				<div class="divTableCell">Negative net flow</div>
+			</div>
+		</div>
+	</div>
+</div> -->
 
 </body>
 </html>
